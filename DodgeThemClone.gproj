@@ -1,6 +1,26 @@
 <project>
- <properties touchToMouse="1" fps="60" logicalHeight="480" mouseToTouch="1" packageName="com.yourdomain.yourapp" android_template="0" win_org="GiderosMobile" osx_domain="giderosmobile.com" encryptAssets="0" autorotation="0" architecture="0" logicalWidth="320" scaleMode="0" iosDevice="0" encryptCode="0" windowWidth="0" retinaDisplay="0" assetsOnly="0" orientation="1" windowHeight="0" win_domain="giderosmobile.com" mouseTouchOrder="0" osx_org="GiderosMobile">
+ <properties logicalHeight="480" windowWidth="0" encryptCode="0" iosDevice="0" mouseToTouch="1" logicalWidth="320" mouseTouchOrder="0" win_domain="giderosmobile.com" retinaDisplay="0" windowHeight="0" android_template="0" architecture="0" win_org="GiderosMobile" packageName="com.yourdomain.yourapp" osx_domain="giderosmobile.com" touchToMouse="1" fps="60" autorotation="0" orientation="1" encryptAssets="0" scaleMode="0" osx_org="GiderosMobile" assetsOnly="0">
   <imageScales/>
  </properties>
+ <folder name="assets">
+  <file source="assets/logo.png"/>
+  <folder name="background">
+   <folder name="1">
+    <file source="assets/background/1/1.png"/>
+    <file source="assets/background/1/2.png"/>
+    <file source="assets/background/1/3.png"/>
+    <file source="assets/background/1/4.png"/>
+   </folder>
+  </folder>
+ </folder>
+ <folder name="screens">
+  <file source="screens/Background.lua"/>
+  <file source="screens/MenuScreen.lua"/>
+  <file source="screens/GameScreen.lua"/>
+  <file source="screens/Screen.lua"/>
+  <file source="screens/ScreenManager.lua"/>
+ </folder>
+ <file source="Player.lua"/>
  <file source="main.lua"/>
+ <file source="utils.lua"/>
 </project>
