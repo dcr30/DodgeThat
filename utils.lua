@@ -11,5 +11,15 @@ function utils.getScreenSize()
 	return width, height
 end
 
+function utils.wrapAngle(angle)
+	if angle > 2 * math.pi then 
+		angle = angle - 2 * math.pi
+	end
+	if angle < 0 then 
+		angle = angle + 2 * math.pi
+	end
+	return angle
+end
+
 utils.screenWidth, utils.screenHeight = utils.getScreenSize()
 return utils
