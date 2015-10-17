@@ -4,7 +4,7 @@ local ScreenManager = require "screens.ScreenManager"
 application:setBackgroundColor(0x170D0F)
 
 screenWidth, screenHeight = utils:getScreenSize()
-mainScale = screenHeight / 128
+mainScale = screenHeight / 140
 screenWidth, screenHeight = screenWidth / mainScale, screenHeight / mainScale
 
 -- Setup screen manager

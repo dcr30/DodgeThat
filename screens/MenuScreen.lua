@@ -1,32 +1,29 @@
 local Screen 	 = require "screens.Screen"
-local Background = require "screens.Background"
+local MenuBackground = require "MenuBackground"
 
 local MenuScreen = Core.class(Screen)
 
-local BACKGROUND_MOVEMENT_SPEED = -100
+function MenuScreen:load()
+	self.background = MenuBackground.new()
+	self:addChild(self.background)
 
-function MenuScreen:load(...)
-	self.bg = Background.new()
-	self:addChild(self.bg)
-
-	self.time = 0;
+	self.time = 0
 	self.logo = Bitmap.new(Texture.new("assets/logo.png", false))
-	-- TODO: scaling
 	self.logo:setX(screenWidth / 2 - self.logo:getWidth() / 2)
 	self.logo:setY(4)
 	self:addChild(self.logo)
 
 	self.startGameButton = TextField.new(nil, "Start game")
-	self.startGameButton:setTextColor(0xFFFFFF)
+	self.startGameButton:setTextColor(0xFF517F)
 	self.startGameButton:setX(screenWidth / 2  - self.startGameButton:getWidth() / 2)
 	self.startGameButton:setY(screenHeight / 2 + self.startGameButton:getHeight() / 2)
 	self:addChild(self.startGameButton)
 	self.startGameButton:addEventListener(Event.TOUCHES_END, self.onButtonClicked, self)
 end
 
-function MenuScreen:unload(...)
-	self:removeChild(self.bg)
-	self.bg = nil
+function MenuScreen:unload()
+	self:removeChild(self.background)
+	self.background = nil
 
 	self:removeChild(self.logo)
 	self.logo = nil
@@ -43,12 +40,9 @@ function MenuScreen:onButtonClicked(e)
 end
 
 function MenuScreen:update(deltaTime)
-	if self.bg then
-		self.bg:move(BACKGROUND_MOVEMENT_SPEED * deltaTime)
-	end
-	if self.logo then
-		self.logo:setY(4 + math.cos(self.time * 3) * 2)
-	end
+	self.background:update(deltaTime)
+	self.logo:setY(4 + math.cos(self.time * 3) * 2)
+	self.startGameButton:setRotation(math.cos(self.time * 1.5) * 2)
 	self.time = self.time + deltaTime
 end
 

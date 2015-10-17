@@ -4,22 +4,29 @@
  </properties>
  <folder name="assets">
   <file source="assets/logo.png"/>
-  <folder name="background">
-   <folder name="1">
-    <file source="assets/background/1/1.png"/>
-    <file source="assets/background/1/2.png"/>
-    <file source="assets/background/1/3.png"/>
-    <file source="assets/background/1/4.png"/>
-   </folder>
+  <file source="assets/player.png"/>
+  <file source="assets/point.png"/>
+  <folder name="menu">
+  	<file source="assets/menu/background.png"/>
+    <file source="assets/menu/1.png"/>
+    <file source="assets/menu/2.png"/>
+    <file source="assets/menu/3.png"/>
+    <file source="assets/menu/4.png"/>
+  </folder>
+  <folder name="rings">
+    <file source="assets/rings/1.png"/>
+    <file source="assets/rings/2.png"/>
+    <file source="assets/rings/3.png"/>
+    <file source="assets/rings/4.png"/>
   </folder>
  </folder>
  <folder name="screens">
-  <file source="screens/Background.lua"/>
   <file source="screens/MenuScreen.lua"/>
   <file source="screens/GameScreen.lua"/>
   <file source="screens/Screen.lua"/>
   <file source="screens/ScreenManager.lua"/>
  </folder>
+ <file source="MenuBackground.lua"/>
  <file source="Player.lua"/>
  <file source="main.lua"/>
  <file source="utils.lua"/>
