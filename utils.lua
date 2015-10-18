@@ -21,5 +21,13 @@ function utils.wrapAngle(angle)
 	return angle
 end
 
+function utils.setDefaultIfNil(givenValue, defaultValue)
+	if not givenValue then 
+		return defaultValue
+	else
+		return givenValue
+	end
+end
+
 utils.screenWidth, utils.screenHeight = utils.getScreenSize()
 return utils

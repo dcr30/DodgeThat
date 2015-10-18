@@ -23,7 +23,7 @@ function PolarObject:init(radius, angle, velocity)
 	self.angularVelocity = self.velocity / self.polarRadius
 
 	-- DEBUG texture
-	self.bmp = Bitmap.new(Texture.new("assets/debug.png", false))
+	self.bmp = Bitmap.new(Texture.new("assets/player.png", false))
 	self.bmp:setAnchorPoint(0.5, 0.5)
 	self:addChild(self.bmp)
 	-- Physical radius
@@ -33,8 +33,17 @@ end
 function PolarObject:update(deltaTime)
 	self.polarAngle = utils.wrapAngle(self.polarAngle  +  self.angularVelocity * deltaTime)
 	
-	self:setX(self.polarRadius * math.cos(self.polarAngle))
-	self:setY(self.polarRadius * math.sin(self.polarAngle))
+	self:setX((self.polarRadius) * math.cos(self.polarAngle))
+	self:setY((self.polarRadius) * math.sin(self.polarAngle))
+end
+
+function PolarObject:setRadius(radius)
+	radius = utils.setDefaultIfNil(radius, self.polarRadius)
+	if (radius < 1) then
+		radius = 1
+	end
+	self.polarRadius = radius
+	self.angularVelocity = self.velocity / self.polarRadius
 end
 
 function PolarObject:hitTestObject(obj)
