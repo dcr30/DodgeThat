@@ -1,5 +1,5 @@
 <project>
- <properties fps="60" scaleMode="0" touchToMouse="1" autorotation="0" win_org="GiderosMobile" iosDevice="0" mouseTouchOrder="0" encryptAssets="0" orientation="1" osx_org="GiderosMobile" android_template="0" packageName="com.yourdomain.yourapp" osx_domain="giderosmobile.com" logicalHeight="480" windowWidth="0" mouseToTouch="1" logicalWidth="320" assetsOnly="0" windowHeight="0" retinaDisplay="0" architecture="0" encryptCode="0" win_domain="giderosmobile.com">
+ <properties mouseTouchOrder="0" fps="60" packageName="com.yourdomain.yourapp" retinaDisplay="0" assetsOnly="0" android_template="0" encryptAssets="0" iosDevice="0" osx_org="GiderosMobile" touchToMouse="1" autorotation="0" win_domain="giderosmobile.com" mouseToTouch="1" scaleMode="0" architecture="0" windowWidth="0" logicalHeight="480" encryptCode="0" orientation="1" osx_domain="giderosmobile.com" windowHeight="0" win_org="GiderosMobile" logicalWidth="320">
   <imageScales/>
  </properties>
  <folder name="assets">
@@ -15,10 +15,29 @@
    <file source="assets/menu/4.png"/>
   </folder>
   <folder name="rings">
-   <file source="assets/rings/1.png"/>
-   <file source="assets/rings/2.png"/>
-   <file source="assets/rings/3.png"/>
-   <file source="assets/rings/4.png"/>
+   <folder name="1">
+    <file source="assets/rings/1/1.png"/>
+    <file source="assets/rings/1/2.png"/>
+    <file source="assets/rings/1/3.png"/>
+    <file source="assets/rings/1/4.png"/>
+   </folder>
+   <folder name="2">
+    <file source="assets/rings/2/1.png"/>
+    <file source="assets/rings/2/2.png"/>
+    <file source="assets/rings/2/3.png"/>
+    <file source="assets/rings/2/4.png"/>
+   </folder>
+   <folder name="3">
+    <file source="assets/rings/3/1.png"/>
+    <file source="assets/rings/3/2.png"/>
+    <file source="assets/rings/3/3.png"/>
+    <file source="assets/rings/3/4.png"/>
+   </folder>
+  </folder>
+  <folder name="backgrounds">
+   <file source="assets/backgrounds/1.png"/>
+   <file source="assets/backgrounds/2.png"/>
+   <file source="assets/backgrounds/3.png"/>
   </folder>
  </folder>
  <folder name="objects">
