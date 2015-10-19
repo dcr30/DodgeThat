@@ -14,7 +14,7 @@ function GameScreen:load(...)
 	self.currentRing = 1
 
 	self.rings = {}
-	for i = 1, 4 do
+	for i = 1, Ring.TYPES_COUNT do
 		self.rings[i] = Ring.new(i, 1)
 		self.gameContainer:addChild(self.rings[i])
 	end
@@ -37,8 +37,8 @@ function GameScreen:onKeyDown(e)
 		self.p:setRadius(self.rings[self.currentRing].radius)
 	elseif e.keyCode == KeyCode.UP then
 		newRing = newRing + 1
-		if newRing > 4 then 
-			newRing = 4;
+		if newRing > Ring.TYPES_COUNT then 
+			newRing = Ring.TYPES_COUNT;
 		end
 
 		self.currentRing = newRing
@@ -47,12 +47,11 @@ function GameScreen:onKeyDown(e)
 
 	-- ring morphing
 	if e.keyCode == KeyCode.LEFT then
-		for i = 1, 4 do
+		for i = 1, Ring.TYPES_COUNT do
 			self.rings[i]:swapState(self.rings[i].state - 1)
 		end
 	elseif e.keyCode == KeyCode.RIGHT then
-
-		for i = 1, 4 do
+		for i = 1, Ring.TYPES_COUNT do
 			self.rings[i]:swapState(self.rings[i].state + 1)
 		end
 	end
@@ -64,7 +63,7 @@ end
 
 function GameScreen:update(deltaTime)
 	self.p:update(deltaTime)
-	for i = 1, 4 do
+	for i = 1, Ring.TYPES_COUNT do
 		self.rings[i]:update(deltaTime)
 	end
 end

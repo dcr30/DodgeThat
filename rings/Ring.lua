@@ -2,8 +2,9 @@ local utils = require "utils"
 
 local Ring = Core.class(Sprite)
 
-local TYPES_COUNT  = 4
-local STATES_COUNT = 3
+Ring.TYPES_COUNT  = 4
+Ring.STATES_COUNT = 3
+
 local MORPH_TIME = 1
 local TRANSITION_TIME = 0.5
 
@@ -16,9 +17,9 @@ function Ring:init(ringType, state)
 	-- load all possible states for ring 
 	-- TODO: make all static
 	self.textures = { } -- state, type(radius)
-	for i = 1, STATES_COUNT do
+	for i = 1, Ring.STATES_COUNT do
 		local typeTextures = {}
-		for j = 1, TYPES_COUNT do
+		for j = 1, Ring.TYPES_COUNT do
 			local texturePath = "assets/rings/" .. tostring(i) .. "/" .. tostring(j) .. ".png"		
 			typeTextures[j] = Texture.new(texturePath, false)
 		end
@@ -44,7 +45,7 @@ function Ring:swapState(newState)
 		return false
 	end
 	newState = utils.setDefaultIfNil(newState, self.state)
-	if (newState > STATES_COUNT) or (newState < 1) then 
+	if (newState > Ring.STATES_COUNT) or (newState < 1) then 
 		newState = self.state
 	end
 	if newState == self.state then
