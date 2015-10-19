@@ -19,7 +19,7 @@ function GameScreen:load(...)
 		self.gameContainer:addChild(self.rings[i])
 	end
 
-	self.p = Player.new(self.rings[self.currentRing].radius, 0, 20)
+	self.p = Player.new(self.rings[self.currentRing].radius, 0, 120)
 	self.gameContainer:addChild(self.p)
 
 	self:addEventListener(Event.KEY_DOWN, GameScreen.onKeyDown, self)

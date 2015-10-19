@@ -3,12 +3,17 @@ local utils = require "utils"
 local Ring = Core.class(Sprite)
 
 Ring.TYPES_COUNT  = 4
-Ring.STATES_COUNT = 3
+Ring.STATES_COUNT = 4
+Ring.TYPE_RADIUS = {
+	64.5,
+	48.5,
+	35,
+	23
+}
 
 local MORPH_TIME = 1
 local TRANSITION_TIME = 0.5
 
-local TYPE_RADIUS = {}
 
 function Ring:init(ringType, state)
 	self.type  = utils.setDefaultIfNil(ringType, 1)
@@ -29,7 +34,7 @@ function Ring:init(ringType, state)
 	self.primaryBmp = Bitmap.new(self.textures[self.state][self.type])
 	self:addChild(self.primaryBmp)
 	self.primaryBmp:setAnchorPoint(0.5, 0.5)
-	self.radius = self:getWidth() / 2
+	self.radius = Ring.TYPE_RADIUS[self.type]
 	-- transitions
 	self.isTransitioning = false
 	self.currentTransitionTime = 0

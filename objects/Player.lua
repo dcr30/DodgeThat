@@ -2,7 +2,7 @@ local PolarObject = require "objects.PolarObject"
 
 local Player = Core.class(PolarObject)
 
-Player.LINE_SWITCH_TIME = 0.5
+Player.LINE_SWITCH_TIME = 0.2
 
 function Player:init(radius, angle, velocity)
 	self.switchingLine = false

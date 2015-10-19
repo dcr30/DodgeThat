@@ -33,6 +33,12 @@
     <file source="assets/rings/3/3.png"/>
     <file source="assets/rings/3/4.png"/>
    </folder>
+   <folder name="4">
+    <file source="assets/rings/4/1.png"/>
+    <file source="assets/rings/4/2.png"/>
+    <file source="assets/rings/4/3.png"/>
+    <file source="assets/rings/4/4.png"/>
+   </folder>
   </folder>
   <folder name="backgrounds">
    <file source="assets/backgrounds/1.png"/>
