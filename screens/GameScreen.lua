@@ -1,13 +1,13 @@
 local utils 		= require "utils"
 local Screen 		= require "screens.Screen"
 local PolarObject 	= require "objects.PolarObject"
+local Player		= require "objects.Player"
 local Ring 			= require "rings.Ring"
 
 local GameScreen = Core.class(Screen)
 
 function GameScreen:load(...)
 	self.gameContainer = Sprite.new()
-	-- self:setAnchorPoint(0.5, 0.5)
 	self.gameContainer:setPosition(screenWidth / 2, screenHeight / 2)
 	self:addChild(self.gameContainer)
 
@@ -19,7 +19,7 @@ function GameScreen:load(...)
 		self.gameContainer:addChild(self.rings[i])
 	end
 
-	self.p = PolarObject.new(self.rings[self.currentRing].radius, 0, 20)
+	self.p = Player.new(self.rings[self.currentRing].radius, 0, 20)
 	self.gameContainer:addChild(self.p)
 
 	self:addEventListener(Event.KEY_DOWN, GameScreen.onKeyDown, self)
