@@ -60,6 +60,7 @@
   <file source="screens/ScreenManager.lua"/>
  </folder>
  <file source="MenuBackground.lua"/>
+ <file source="FramerateCounter.lua"/>
  <file source="main.lua"/>
  <file source="utils.lua"/>
 </project>
