@@ -4,9 +4,11 @@
  </properties>
  <folder name="assets">
   <file source="assets/logo.png"/>
-  <file source="assets/player.png"/>
+  <file source="assets/player_yellow.png"/>
+  <file source="assets/player_blue.png"/>
+  <file source="assets/player_light.png"/>
   <file source="assets/point.png"/>
-  <file source="assets/debug.png"/>
+  <file source="assets/obstacle.png"/>
   <folder name="menu">
    <file source="assets/menu/background.png"/>
    <file source="assets/menu/1.png"/>
@@ -47,6 +49,7 @@
   </folder>
  </folder>
  <folder name="objects">
+  <file source="objects/Obstacle.lua"/>
   <file source="objects/PolarObject.lua"/>
   <file source="objects/Player.lua"/>
  </folder>

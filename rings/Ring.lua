@@ -1,5 +1,3 @@
-local utils = require "utils"
-
 local Ring = Core.class(Sprite)
 
 Ring.TYPES_COUNT  = 4
@@ -8,7 +6,7 @@ Ring.TYPE_RADIUS = {
 	64.5,
 	48.5,
 	35,
-	23
+	24
 }
 
 local MORPH_TIME = 1

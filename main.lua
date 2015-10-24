@@ -13,7 +13,7 @@ screenWidth, screenHeight = screenWidth / mainScale, screenHeight / mainScale
 screenManager = ScreenManager.new()
 screenManager:setScale(mainScale)
 stage:addChild(screenManager)
-screenManager:loadScreen("MenuScreen", false)
+screenManager:loadScreen("GameScreen", false)
 
 -- Show fps
 local framerateCounter = FramerateCounter.new()

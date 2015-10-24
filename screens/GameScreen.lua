@@ -1,8 +1,8 @@
-local utils 		= require "utils"
-local Screen 		= require "screens.Screen"
-local PolarObject 	= require "objects.PolarObject"
+local Obstacle 		= require "objects.Obstacle"
 local Player		= require "objects.Player"
+local PolarObject 	= require "objects.PolarObject"
 local Ring 			= require "rings.Ring"
+local Screen 		= require "screens.Screen"
 
 local GameScreen = Core.class(Screen)
 
@@ -19,8 +19,26 @@ function GameScreen:load(...)
 		self.gameContainer:addChild(self.rings[i])
 	end
 
-	self.p = Player.new(self.rings[self.currentRing].radius, 0, 120)
-	self.gameContainer:addChild(self.p)
+	self.polarObjects = {}
+
+	self.players = {}
+
+	local player1 = Player.new(self.rings[self.currentRing].radius, 0, nil, "yellow")
+	self.gameContainer:addChild(player1)
+	table.insert(self.polarObjects, player1)
+	self.players[1] = player1
+
+	local player2 = Player.new(self.rings[self.currentRing].radius, 0, nil, "blue")
+	self.gameContainer:addChild(player2)
+	table.insert(self.polarObjects, player2)
+	self.players[2] = player2
+	self.players[2]:setVelocity(-self.players[2].velocity)
+
+	for i = 1, 7 do
+		local obstacle = Obstacle.new(self.rings[math.random(1, #self.rings)].radius, math.random(0, math.pi * 2))
+		self.gameContainer:addChild(obstacle)
+		table.insert(self.polarObjects, obstacle)
+	end
 
 	self:addEventListener(Event.KEY_DOWN, GameScreen.onKeyDown, self)
 end
@@ -34,7 +52,7 @@ function GameScreen:onKeyDown(e)
 			newRing = 1;
 		end
 		self.currentRing = newRing
-		self.p:setRadius(self.rings[self.currentRing].radius)
+		self.players[1]:setRadius(self.rings[self.currentRing].radius)
 	elseif e.keyCode == KeyCode.UP then
 		newRing = newRing + 1
 		if newRing > Ring.TYPES_COUNT then 
@@ -42,7 +60,7 @@ function GameScreen:onKeyDown(e)
 		end
 
 		self.currentRing = newRing
-		self.p:setRadius(self.rings[self.currentRing].radius)
+		self.players[1]:setRadius(self.rings[self.currentRing].radius)
 	end
 
 	-- ring morphing
@@ -62,7 +80,25 @@ function GameScreen:unload()
 end
 
 function GameScreen:update(deltaTime)
-	self.p:update(deltaTime)
+	for i, object in ipairs(self.polarObjects) do
+		object:update(deltaTime)
+
+		if object.type == "obstacle" then
+			object:setAlpha(0.2)
+		end
+		for j, player in ipairs(self.players) do
+			if object ~= player then
+				local isHit, distance2 = player:hitTestObject(object)
+				if isHit then
+					-- TODO
+				end
+
+				if object.type == "obstacle" then
+					object:setAlpha(object:getAlpha() + math.max(0, 1 - distance2 / 5000))
+				end
+			end
+		end
+	end
 	for i = 1, Ring.TYPES_COUNT do
 		self.rings[i]:update(deltaTime)
 	end

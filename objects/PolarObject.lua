@@ -1,5 +1,3 @@
-local utils = require "utils"
-
 local PolarObject = Core.class(Sprite)
 
 -- all angle measures are in radians
@@ -7,19 +5,33 @@ function PolarObject:init(radius, angle, velocity)
 	-- Polar coordinates
 	self.polarAngle  = utils.setDefaultIfNil(angle,  0)
 	self.polarRadius = utils.setDefaultIfNil(radius, 1)
-	self.velocity    = utils.setDefaultIfNil(velocity, 0)
+	self:setVelocity(velocity)
 	
-	self.angularVelocity = self.velocity / self.polarRadius
 	self.currentPolarRadius = self.polarRadius
 	self.lineSwitchSpeed = 0
+
+	self.timeAlive = 0
+
+	self.type = ""
+end
+
+function PolarObject:setVelocity(velocity)
+	if not velocity then 
+		self.angularVelocity = 0
+		return 
+	end
+	self.velocity = velocity
+	self.angularVelocity = self.velocity / self.polarRadius
 end
 
 function PolarObject:setTexture(texture)
-	local newTexture = utils.setDefaultIfNil(texture, Texture.new("assets/debug.png"))
+	if not texture then
+		return
+	end
 	if self.bmp then 
-		self.bmp:setTexture(newTexture)
+		self.bmp:setTexture(texture)
 	else 
-		self.bmp = Bitmap.new(newTexture)
+		self.bmp = Bitmap.new(texture)
 		self:addChild(self.bmp)
 	end
 	self.bmp:setAnchorPoint(0.5, 0.5)
@@ -31,6 +43,8 @@ function PolarObject:update(deltaTime)
 
 	self:setX((self.currentPolarRadius) * math.cos(self.polarAngle))
 	self:setY((self.currentPolarRadius) * math.sin(self.polarAngle))
+
+	self.timeAlive = self.timeAlive + deltaTime
 end
 
 function PolarObject:setRadius(radius)
@@ -39,7 +53,8 @@ function PolarObject:setRadius(radius)
 		radius = 1
 	end
 	self.polarRadius = radius
-	self.angularVelocity = self.velocity / self.polarRadius
+	-- Update angular velocity
+	self:setVelocity(self.velocity)
 end
 
 function PolarObject:hitTestObject(obj)
@@ -48,17 +63,18 @@ function PolarObject:hitTestObject(obj)
 		return false
 	end
 	
-	if not (self.polarRadius == obj.polarRadius) then
+	--[[if not (self.polarRadius == obj.polarRadius) then
 		return false
-	end
+	end]]
 
 	local dx = (obj:getX() - self:getX())
 	local dy = (obj:getY() - self:getY())
 	local minDistance = self.radius + obj.radius
-	if (dx * dx + dy * dy) <= minDistance * minDistance then 
-		return true 
+	local distance2 = dx * dx + dy * dy
+	if dx * dx + dy * dy <= minDistance * minDistance then 
+		return true, distance2
 	else 
-		return false
+		return false, distance2
 	end
 end
 

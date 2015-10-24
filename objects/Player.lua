@@ -3,12 +3,23 @@ local PolarObject = require "objects.PolarObject"
 local Player = Core.class(PolarObject)
 
 Player.LINE_SWITCH_TIME = 0.2
+Player.DEFAULT_VELOCITY = 30
 
-function Player:init(radius, angle, velocity)
+function Player:init(radius, angle, _, colorName)
+	if not colorName then
+		colorName = "blue"
+	end
+	self:setVelocity(Player.DEFAULT_VELOCITY)
 	self.switchingLine = false
 
-	local texture = Texture.new("assets/player.png", false)
+	self.lightingBmp = Bitmap.new(Texture.new("assets/player_light.png"))
+	self.lightingBmp:setAnchorPoint(0.5, 0.5)
+	self:addChild(self.lightingBmp)
+
+	local texture = Texture.new("assets/player_" .. colorName .. ".png")
 	self:setTexture(texture)
+
+	self.type = "player"
 end
 
 function Player:update(deltaTime)
@@ -21,6 +32,8 @@ function Player:update(deltaTime)
 		self.angularVelocity = self.velocity / self.currentPolarRadius
 	end
 	self.super.update(self, deltaTime)
+
+	self.lightingBmp:setAlpha((math.sin(self.timeAlive * 5) + 1) / 2)
 end
 
 function Player:setRadius(radius)
